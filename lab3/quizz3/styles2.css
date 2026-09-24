@@ -1,0 +1,51 @@
+main{
+    background: rgb(191, 39, 39);
+    border: 2px solid black;
+}
+
+section{
+    color: white;
+    background-color: rgb(238, 116, 136);
+    padding: 5px;
+    border: 2px solid black;
+    margin: 10px
+}
+
+header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(0, 75, 65);
+    color: white;
+    border: 2px solid black;
+    padding: 10px;
+}
+
+aside{
+    background-color: rgb(15, 94, 15);
+    color:white;
+    border: 2px solid black;
+    padding: 10px;
+}
+
+footer{
+    background-color: greenyellow;
+    border: 2px solid black;
+    padding: 10px;
+}
+
+header{grid-area: h;}
+main{grid-area: m;}
+aside{grid-area: a;}
+footer{grid-area: f;}
+
+body{
+    border: 2px solid purple;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: 1fr 6fr 0.5fr;
+    grid-template-areas:
+        'h h'
+        'm a'
+        'f f';
+}
