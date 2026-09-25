@@ -1,3 +1,9 @@
+* {
+    padding: 0px;
+    margin: 0px;
+}
+
+
 main{
     background: rgb(191, 39, 39);
     border: 2px solid black;
@@ -48,4 +54,8 @@ body{
         'h h'
         'm a'
         'f f';
+}
+
+ul {
+    list-style-type:none;
 }
