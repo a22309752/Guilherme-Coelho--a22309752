@@ -1,7 +1,243 @@
+* {
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
 body{
-    background-color: #b3b3b3;
+    font: News Gothic Bold;
+}
+#hero-page{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding:50px;
+    gap:30px;
+    color:white;
+    height: 100vh;
+    background-image: url('images/vader.jpg');
+    background-size:cover;
+    position:relative;
 }
 
-image{
-    width: 300px;
+#menu{
+    color:white;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    height: 10vh;
+    background-color: #0B111B;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap:10px;
+    padding: 15px;
+}
+
+#menu h2{
+    flex:1;
+    display: flex;
+    justify-content: space-between;
+}
+
+.hamburguer{
+    display: none;
+}
+
+
+#hero-text{
+    font-size:25px;
+    font-weight: 400px;
+}
+nav{
+    display:flex;
+    gap: 5px;
+}
+ nav a{
+    font-size: 20px;
+    background-color: #B32635;
+    color:white;
+    border-radius: 6px;
+    padding: 10px;
+    text-decoration-line: none;
+}
+ nav a:hover{
+    background-color: #DC3545;
+}
+nav a:active{
+    background-color: #781722;
+}
+
+#sobre{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    color:white;
+    height:100vh;
+    background-color: #0B111B;
+    padding: 50px;
+}
+
+#informacao{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #263E59;
+    gap: 20px;
+    padding:20px;
+    border-radius: 6px;
+    height: 350px;
+
+}
+
+#informacao > div{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 30px;
+}
+
+#sobre ul{
+    display: flex;
+    list-style: none;
+    gap:10px;
+}
+
+a{
+    text-decoration: none;
+    color:white
+}
+
+#sobre ul a{
+    display:inline-block;
+    background-color: #B32635;
+    color:white;
+    border-radius: 6px;
+    padding: 10px;
+    text-decoration-line: none;
+}
+
+#sobre ul a:hover {
+    background-color: #DC3545;
+}
+
+#sobre ul a:active {
+    background-color: #781722;
+}
+
+#sobre div{
+    font-size: 20px;
+    margin-top: 20px;
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    gap:20px;
+}
+
+#sobre h1{
+    font-size:50px;
+}
+
+#sobre img{
+    width: 450px;
+    max-width: 100%;
+    height: auto;
+}
+
+#projetos{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: #0B111B;
+    color: white;
+    padding: 50px;
+    gap: 60px;
+}
+
+#projetos nav{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #263E59;
+    padding:20px;
+    border-radius: 6px;
+}
+
+#projetos div{
+    display: flex;
+    gap: 60px;
+    align-self: center;
+    justify-content: center;
+
+}
+
+#projetos div img{
+    width: 220px;
+    height: 150px;
+    object-fit: cover;
+}
+
+#projetos h1{
+    font-size:50px;
+}
+
+#sobre,#projetos {
+    scroll-margin-top: 10vh;
+}
+
+@media (max-width: 600px) {
+    #menu, nav{
+        flex-direction: column;
+    }
+    #menu {
+        height: auto;
+        min-height: 10vh;
+    }
+    #menu nav {
+        display:none;
+    }
+    #menu:hover nav{
+        width: 100%;
+        display:flex;
+    }
+    .hamburguer{
+        display: block;
+    }
+    #menu h2{
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+    }
+    #hero-page {
+        padding: 20px;
+        background-image: url('images/vadermobile.jpg');
+    }
+    #hero-text{
+        font-size: 15px;
+    }
+
+    #sobre{
+        height: auto;
+        font-family: 20px;
+        padding: 15px;
+    }
+    #informacao{
+        height: auto;
+        flex-direction: column;
+        padding: 15px;
+    }
+    #sobre ul{
+        flex-wrap: wrap;
+    }
+
+    #projetos{
+        height:auto;
+        font-size: 15px;
+        gap: 15px;
+    }
+    #projetos div{
+        flex-direction: column;
+        gap:10px;
+    }
 }
