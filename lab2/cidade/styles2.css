@@ -1,6 +1,16 @@
 *{
     padding:0px;
     margin:0px;
+    box-sizing: border-box;
+}
+body{
+    display: flex;
+    flex-direction: column;
+    justify-content: ;
+    height: 100vh;
+    background: rgb(245, 245, 245);
+    padding: 0px;
+    margin: 0px;
 }
 
 nav a{
@@ -48,11 +58,7 @@ footer{
     gap: 10px;
     width: 100px;
 }
-body{
-    height: 100vh;
-    background: rgb(245, 245, 245);
-    padding: 0px;
-    margin: 0px;
+main{
+    flex: 1;
 }
-
 
