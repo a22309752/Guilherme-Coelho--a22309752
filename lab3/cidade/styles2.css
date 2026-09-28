@@ -3,7 +3,7 @@
     margin:0px;
     box-sizing: border-box;
 }
-body{
+.base{
     display:flex;
     flex-direction: column;
     min-height: 100vh;
@@ -24,6 +24,7 @@ header{
 nav{
     display:flex;
     gap: 5px;
+    height: auto;
 }
 nav a{
     font-size: 13px;
@@ -104,29 +105,216 @@ footer{
         width: 100%;
 
 }
-
+#body-info{
+    display:flex;
+    flex-direction: column;
+}
 #body-info main{
     background-color: #0B111B;
     color: white;
+    flex: 1;
 }
 
-#body-info head{grid-area: h;}
-#body-info main{grid-area: m;}
-#body-info aside{grid-area: s;
-                color:white}
-#body-info footer{grid-area: f;}
+#imagem img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    display: block;
+    object-position: center;
+}
 
-#body-info{
+#main-info #text{grid-area: t;}
+#main-info #table{grid-area: td;}
+#main-info #factos{grid-area: f;
+                color:white}
+#main-info #imagem{grid-area: i;
+                max-width: 100%;}
+
+#main-info{
     background-color: #0B111B;
     display: grid;
-    grid-template-columns: 1fr 1fr 2fr;
-    grid-template-rows: 1fr 2fr 3fr 0.5fr;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
     grid-template-areas:
-    'h h h'
-    'm a a'
-    'm a a'
-    'f f f';
+    't td'
+    'i f ';
+}
 
+main{
+    gap: 20px;
+    background-color: #0B111B;
+    color:white;
+    padding: 15px;
+    height:auto;
+}
+
+#multimedia header{
+    height: auto;
+}
+#multimedia main{
+    padding: 0px;
+}
+
+#multimedia main nav a{
+    background-color: #C69A50;
+    font-size: 20px;
+}
+
+#multimedia main nav a:hover{
+    background-color: #DEB56D;
+}
+
+#multimedia main nav a:active{
+    background-color: #967239;
+}
+
+
+#title{
+    font-size: 30px;
+    background-image: linear-gradient(
+            rgba(0, 0, 0, 0.1),
+            rgba(0, 0, 0, 0.5)
+        ),url(images/imagem_emblematica.jpg);
+    background-attachment: fixed;
+    height: 100vh;
+    background-size:cover;
+    position:relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px;
+    align-items: center;
+    gap:10px;
+}
+
+
+#fotos{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    height:100vh;
+    padding: 20px;
+    scroll-margin-top: 50px;
+}
+
+#fotos-layout img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 6px;
+}
+
+#fotos-layout #um{grid-area: u;}
+#fotos-layout #dois{grid-area: d;}
+#fotos-layout #tres{grid-area: t;}
+#fotos-layout #quatro{grid-area: q;}
+#fotos-layout #cinco{grid-area: c;}
+#fotos-layout #seis{grid-area: s;}
+#fotos-layout #sete{grid-area: st;}
+#fotos-layout #oito{grid-area: o;}
+
+#fotos-layout{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 2fr 2fr;
+    grid-template-areas:
+    'u d t q'
+    'c s st o';
+
+    gap: 10px;
+}
+
+#video{
+    height:100vh;
+    padding: 20px;
+    scroll-margin-top: 50px;
+}
+
+#poesia{
+    background-image: linear-gradient(
+            rgba(0, 0, 0, 0.1),
+            rgba(0, 0, 0, 0.5)
+        ),url(images/imagem_emblematica.jpg);
+    background-attachment: fixed;
+    background-size:cover;
+    position:relative;
+    height:100vh;
+    padding: 20px;
+    scroll-margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    font-size: 30px;
+}
+
+#poesia div p:nth-child(4) {
+    margin-top: 25px;
+}
+
+#poesia h1,
+#poesia p {
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
+}
+
+#video {
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#video {
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+
+#video video {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+.video-texto {
+    position: relative;
+    z-index: 1;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+
+    gap: 20px;
+    padding: 20px;
+    color: white;
+
+    text-shadow: 2px 2px 6px black;
+}
+
+.video-texto h2 {
+    font-size: 50px;
+}
+
+.video-texto a {
+    background-color: #C69A50;
+    color: white;
+
+    padding: 15px 25px;
+    border-radius: 6px;
+    text-decoration: none;
+}
+
+.video-texto a:hover {
+    background-color: #DEB56D;
 }
 
 @media (max-width:600px){
@@ -166,4 +354,25 @@ footer{
         align-items: center;
     }
 
+    #main-info{
+        display: flex;
+        flex-direction: column;
+    }
+
+    #fotos {
+        height: auto;
+        min-height: 100vh;
+    }
+    #fotos-layout{
+        display: flex;
+        flex-direction: column;
+        height: auto;
+    }
+
+    #fotos-layout img {
+        width: 100%;
+        height: 220px;
+        flex: none;
+        object-fit: cover;
+    }
 }

@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="styles2.css" />
     <title>Cidade</title>
   </head>
-  <body>
+  <body id="multimedia">
     <header>
       <h1>Cascais</h1>
       <nav>
@@ -17,49 +17,46 @@
       </nav>
     </header>
     <main>
-      <section class="home">
+      <section id="title">
         <h2>Multimédia</h2>
-        <p>Nesta página encontram-se conteúdos multimédia</p>
+        <p>"Cascais: onde cada imagem conta uma história e cada história merece ser partilhada."</p>
+        <nav>
+          <a href="#fotos">Fotografias</a>
+          <a href="#video">Video</a>
+          <a href="#poesia">Poesia</a>
+        </nav>
       </section>
 
-      <section>
+      <section id="fotos">
         <h3>Fotografias</h3>
-        <div class="fotografias">
-          <img src="images/1.jpg" alt="Praia de Cascais" />
-          <img src="images/2.jpg" alt="Costa de Cascais" />
-          <img src="images/3.jpg" alt="Marina de Cascais" />
-          <img src="images/4.jpg" alt="Casa Paula Rino" />
-          <img src="images/5.jpg" alt="Farol de Santa Marta" />
-          <img src="images/6.jpg" alt="Passeio Marítimo" />
-          <img src="images/7.jpg" alt="Sereia de Cascais" />
-          <img src="images/8.jpg" alt="Cidadela de Cascais" />
+        <div id="fotos-layout">
+          <img id="um" src="images/1.jpg" alt="Praia de Cascais" />
+          <img id="dois" src="images/2.jpg" alt="Costa de Cascais" />
+          <img id="tres" src="images/3.jpg" alt="Marina de Cascais" />
+          <img id="quatro" src="images/4.jpg" alt="Casa Paula Rino" />
+          <img id="cinco" src="images/5.jpg" alt="Farol de Santa Marta" />
+          <img id="seis" src="images/6.jpg" alt="Passeio Marítimo" />
+          <img id="sete" src="images/7.jpg" alt="Sereia de Cascais" />
+          <img id="oito" src="images/8.jpg" alt="Cidadela de Cascais" />
         </div>
       </section>
 
-      <section>
-        <h3>Vídeo</h3>
-        <iframe
-          width="560"
-          height="315"
-          src="https://www.youtube.com/embed/l0gIRIO7dEc?si=Ycy4RxgV4kmrwkbE"
-          title="YouTube video player"
-          frameborder="0"
-          allow="
-            accelerometer;
-            autoplay;
-            clipboard-write;
-            encrypted-media;
-            gyroscope;
-            picture-in-picture;
-            web-share;
-          "
-          referrerpolicy="strict-origin-when-cross-origin"
-          allowfullscreen
-        ></iframe>
+      <section id="video">
+        <video autoplay muted loop playsinline>
+            <source src="videos/cascais.mp4" type="video/mp4">
+        </video>
+
+        <div class="video-texto">
+          <h2>Descobre Cascais</h2>
+          <a href="https://www.youtube.com/watch?v=l0gIRIO7dEc"
+            target="_blank">
+            Ver vídeo
+          </a>
+        </div>
       </section>
 
-      <section class="home">
-        <h3>Poesia</h3>
+      <section id="poesia">
+        <h1>Poesia</h1>
         <div>
           <p>Onde o mar abraça a terra inteira,</p>
           <p>Cascais brilha sob o sol dourado,</p>
@@ -69,6 +66,7 @@
           <p>E prende a alma de quem ganha fé.</p>
         </div>
       </section>
+
     </main>
     <footer>
       <p>DIW 2026-27</p>

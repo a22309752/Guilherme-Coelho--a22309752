@@ -186,6 +186,7 @@ a{
     scroll-margin-top: 10vh;
 }
 
+
 @media (max-width: 600px) {
     #menu, nav{
         flex-direction: column;
