@@ -16,20 +16,22 @@ function retorna_texto(){
     texto.textContent=textoOriginal
 }
 
+const titulo = document.querySelector('#um h2')
 const botao = document.querySelector('#um button')
 botao.addEventListener('click', muda_cor)
+
 function muda_cor(){
     if(botao.textContent == "Red"){
-        botao.style.backgroundColor = "red"
+        titulo.style.color = "red"
     }else if(botao.textContent == "Green"){
-        botao.style.backgroundColor = "green"
+        titulo.style.color = "green"
     }else if(botao.textContent == "Blue"){
-        botao.style.backgroundColor = "blue"
+        titulo.style.color = "blue"
     }else if(botao.textContent == "Yellow"){
-        botao.style.backgroundColor = "yellow"
+        titulo.style.color = "yellow"
     }else if(botao.textContent == "Purple"){
-        botao.style.backgroundColor = "purple"
+        titulo.style.color = "purple"
     }else if(botao.textContent == "Black"){
-        botao.style.backgroundColor = "black"
+        titulo.style.color = "black"
     }
 }
