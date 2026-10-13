@@ -16,22 +16,36 @@ function retorna_texto(){
     texto.textContent=textoOriginal
 }
 
-const titulo = document.querySelector('#um h2')
-const botao = document.querySelector('#um button')
-botao.addEventListener('click', muda_cor)
 
-function muda_cor(){
-    if(botao.textContent == "Red"){
-        titulo.style.color = "red"
-    }else if(botao.textContent == "Green"){
-        titulo.style.color = "green"
-    }else if(botao.textContent == "Blue"){
-        titulo.style.color = "blue"
-    }else if(botao.textContent == "Yellow"){
-        titulo.style.color = "yellow"
-    }else if(botao.textContent == "Purple"){
-        titulo.style.color = "purple"
-    }else if(botao.textContent == "Black"){
-        titulo.style.color = "black"
+const titulo = document.querySelector('#um h2')
+const botoes = document.querySelectorAll('#um button')
+
+botoes.forEach(function(botao) {
+    botao.addEventListener('click', muda_cor)
+})
+
+function muda_cor(event) {
+    titulo.style.color = event.target.textContent.toLowerCase()
+}
+
+
+const inputCor = document.querySelector('#tres input')
+inputCor.addEventListener('input', muda_background_color)
+const caixa = document.querySelector('#cinco input')
+const cores = ['lightblue', 'lightgreen', 'lightpink', 'yellow', 'orange', 'plum']
+let indice = 0
+function muda_background_color(){
+    document.body.style.backgroundColor = inputCor.value
+}
+
+caixa.addEventListener('input', muda_cor_input)
+
+function muda_cor_input() {
+    caixa.style.backgroundColor = cores[indice]
+
+    indice++
+
+    if (indice == cores.length) {
+        indice = 0
     }
 }
