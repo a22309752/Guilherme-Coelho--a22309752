@@ -1,0 +1,30 @@
+*{
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+
+    header{
+        padding: 10px;
+        border-radius: 6px;
+        background-color:  #0B111B;
+        color: white;
+    }
+
+    main{
+        background-color: rgb(50, 69, 119);
+        padding: 30px;
+        border-radius: 6px;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    footer{
+        background-color: #0B111B;
+        color:white;
+        border-radius: 6px;
+        padding: 5px;
+    }
+
+}

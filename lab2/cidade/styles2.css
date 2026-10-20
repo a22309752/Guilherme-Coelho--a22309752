@@ -6,7 +6,7 @@
 body{
     display: flex;
     flex-direction: column;
-    justify-content: ;
+    justify-content: center;
     height: 100vh;
     background: rgb(245, 245, 245);
     padding: 0px;
