@@ -4,27 +4,75 @@
     box-sizing: border-box;
 
     header{
-        padding: 10px;
-        border-radius: 6px;
+        padding: 20px;
         background-color:  #0B111B;
         color: white;
     }
 
     main{
-        background-color: rgb(50, 69, 119);
+        background-color: #0B111B;
         padding: 30px;
-        border-radius: 6px;
         height: 100vh;
         display: flex;
         flex-direction: column;
-        gap: 15px;
+        gap: 20px;
     }
 
     footer{
         background-color: #0B111B;
         color:white;
+        padding: 10px;
+        display: flex;
+        justify-content: center;
+    }
+
+    main section{
+        background-color: #263E59;
         border-radius: 6px;
-        padding: 5px;
+        padding: 20px;
+        color:white;
+        display: flex;
+        flex-direction: column;
+        gap:20px;
+    }
+
+    main #colecao ul{
+        display: flex;
+        gap: 20px;
+        list-style-type: none;
+    }
+
+    main section ul li{
+        background-color: rgb(73, 104, 114);
+        padding: 20px;
+        border-radius: 6px;
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+
+    button, #submit{
+        background-color:#B32635;
+        border-radius: 6px;
+        color: white;
+        padding: 10px;
+        border:none;
+    }
+
+    #number{
+        border-radius: 6px;
+        padding:10px ;
+    }
+
+    main #repetidos ul{
+        display:flex;
+        flex-direction: column;
+        gap: 20px;
+        list-style-type: none;
+    }
+
+    #repetidos ul li{
+        display: flex;
+        justify-content: space-between;
     }
 
 }

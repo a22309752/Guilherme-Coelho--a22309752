@@ -169,12 +169,13 @@ a{
     gap: 60px;
     align-self: center;
     justify-content: center;
+    flex-wrap: wrap;
 
 }
 
 #projetos div img{
-    width: 220px;
-    height: 150px;
+    width: 150px;
+    height: auto;
     object-fit: cover;
 }
 
