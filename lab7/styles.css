@@ -5,12 +5,17 @@
 }
 
 body{
-    background-color: #FFFFFF;
+    background-color: #0B0F19;
     padding: 20px;
+    font-family: 'Inter', sans-serif;
+}
+
+h1, h2 {
+    font-family: 'Orbitron', sans-serif;
 }
 
 header,footer{
-    background-color: #1A1A1A;
+    background-color: #0B0F19;
     padding: 10px;
     border-radius: 6px;
     color:white;
@@ -20,22 +25,47 @@ header{
     display: flex;
     justify-content: space-between;
 }
+header h2 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+header h2 span {
+    display: flex;
+    align-items: center;
+}
+
+header h2 img {
+    width: 35px;
+    height: 35px;
+    object-fit: contain;
+}
+
 header nav{
     display: flex;
     gap:10px;
 }
-header nav a{
+header nav a,button{
     text-decoration: none;
     color: white;
-    background-color: #FF5722;
+    background-color: #7C3AED;
     padding: 10px;
     border-radius: 6px;
+    border:none;
 }
 header nav a:hover{
-    background-color: #E64A19;
+    background-color: #6D28D9;
 }
 header nav a:active{
-    background-color: #D84315;
+    background-color: #5B21B6;
+}
+
+button:hover{
+    background-color: #6D28D9;
+}
+button:active{
+    background-color: #5B21B6;
 }
 footer{
     display:flex;
@@ -44,12 +74,69 @@ footer{
 main{
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 30px;
     margin-top: 20px;
     margin-bottom: 20px;
+    width: 100%;
+    max-width: 1400px;
+    margin: 20px auto;
 }
 main section{
-    background-color: #F8F9FA;
+    background-color: #0B0F19;
     padding: 20px;
     border-radius: 6px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+div{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    width: 100%;
+    justify-content: center;
+}
+
+div img{
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    height: auto;
+    object-fit: cover;
+    border-radius: 6px;
+}
+
+article{
+    display: flex;
+    flex-direction: column;
+    gap:15px;
+    background-color: #1A2233;
+    color:white;
+    padding: 15px;
+    border-radius: 6px;
+    width: calc((100% - 40px) / 3);
+    flex-shrink: 0;
+    min-width: 0;
+    justify-content: space-around;
+}
+
+p:last-of-type{
+    color:#C4B5FD;
+    font-size: 25px;
+}
+
+button{
+    font-size: 20px;
+}
+
+#cesto div article{
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+#cesto div{
+    flex-direction: column;
 }
