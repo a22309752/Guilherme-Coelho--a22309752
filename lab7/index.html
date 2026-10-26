@@ -11,23 +11,26 @@
         <h2><span><img src="images/icons8-crystal-48.png" alt="maul"></span>Kyber Vault</h2>
         <nav>
             <a href="#produtos">Produtos</a>
-            <a href="#cesto">Cesto</a>
+            <a id="abre-cesto" onclick="abreCesto()">Cesto</a>
         </nav>
     </header>
+
     <main>
         <section id="produtos">
             <h1>Explora os nossos lightsabers</h1>
             <div class="colection">
             </div>
         </section>
+    </main>
+    <aside>
         <section id="cesto">
-            <h1>Os seus produtos</h1>
+            <h1>Os seus produtos <span><button id="fecha-cesto" onclick="fechaCesto()">x</button></span></h1>
             <div class="colection">
             </div>
             <h4>Total do valor:<span>0 €</span></h4>
-
         </section>
-    </main>
+    </aside>
+    <div id="overlay" onclick="fechaCesto()"></div>
     <footer>DIW-2026/27 Lusófona</footer>
     <script src="produtos.js"></script>
     <script src="main.js"></script>

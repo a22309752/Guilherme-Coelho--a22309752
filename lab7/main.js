@@ -3,8 +3,7 @@ const colecao = document.querySelector("#produtos div")
 const carrinho = document.querySelector("#cesto div")
 const produtos_selecionados = JSON.parse(localStorage.getItem('produtos_selecionados')) || []
 const valor_total = document.querySelector('#cesto h4 span')
-
-
+const cesto = document.querySelector('aside')
 
 
 //B. Funções utilitárias
@@ -179,8 +178,16 @@ function aumentaQuantidade(produto){
     }
 }
 
+//D. Event Listeners
+function abreCesto() {
+    cesto.classList.add('show')
+}
 
-//D. Inicialização
+function fechaCesto() {
+    cesto.classList.remove('show')
+}
+
+//E. Inicialização
 renderizarProdutos(produtos)
 atualizaCesto()
 
