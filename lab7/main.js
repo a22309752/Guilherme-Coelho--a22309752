@@ -30,12 +30,22 @@ function criarProduto(produto){
         article.append(botao)
 
         botao.addEventListener('click', () =>{
-            produtos_selecionados.push({
+
+            const produto_existente = produtos_selecionados.find(p => p.title === produto.title)
+            if(produto_existente){
+                produto_existente.quantidade++
+            }
+            else{
+                 produtos_selecionados.push({
                 title: produto.title,
-                price: produto.price
-            })
+                price: produto.price,
+                image: produto.image,
+                quantidade: 1
+                })
+            }
             localStorage.setItem('produtos_selecionados', JSON.stringify(produtos_selecionados))
             atualizaCesto()
+            console.log(produtos_selecionados)
         })
 
         return article
@@ -55,13 +65,38 @@ function criarProduto(produto){
     const article = document.createElement('article')
     const title = document.createElement('h3')
     title.textContent = produto.title
-    const price = document.createElement('p')
-    price.textContent = `${produto.price}€`
 
-    article.append(title,price)
+    const price = document.createElement('p')
+    price.textContent = `${produto.price*produto.quantidade}€`
+
+    const quantidade = document.createElement('input')
+    quantidade.type = 'number'
+    quantidade.min = '1'
+    quantidade.step = '1'
+    quantidade.value = produto.quantidade
+
+    const diminuir = document.createElement('button')
+    diminuir.textContent = '-'
+    diminuir.classList.add("diminuir")
+
+    const aumentar = document.createElement('button')
+    aumentar.textContent = '+'
+    aumentar.classList.add("aumentar")
+
+    const quantidade_div = document.createElement('div')
+    quantidade_div.append(diminuir,quantidade,aumentar)
+
+    const imagem = document.createElement('img')
+    imagem.src = produto.image
+
+    const div = document.createElement('div')
+    div.append(title,quantidade_div,price)
+
+
+    article.append(imagem,div)
 
     const eliminar = document.createElement('button')
-    eliminar.textContent = "Eliminar"
+    eliminar.textContent = "x"
 
     article.append(eliminar)
 
@@ -69,6 +104,30 @@ function criarProduto(produto){
         eliminaProduto(produto)
     })
 
+    console.log('Vou associar o evento ao botão diminuir')
+
+    diminuir.addEventListener('click', ()=>{
+        diminuiQuantidade(produto)
+    })
+
+    aumentar.addEventListener('click', () => {
+        aumentaQuantidade(produto)
+    })
+
+    quantidade.addEventListener('change', () => {
+        const produto_atual = produtos_selecionados.find(p => p.title === produto.title)
+        if(produto_atual){
+            if(Number(quantidade.value)>0){
+                produto_atual.quantidade = Number(quantidade.value)
+                localStorage.setItem('produtos_selecionados', JSON.stringify(produtos_selecionados))
+                atualizaCesto()
+            }
+            else if(Number(quantidade.value) === 0){
+                eliminaProduto(produto)
+            }
+        }
+
+    })
 
     return article
  }
@@ -96,6 +155,29 @@ function eliminaProduto(produto){
     }
 }
 
+function diminuiQuantidade(produto){
+    const produto_atual = produtos_selecionados.find(p => p.title === produto.title)
+    if(produto_atual){
+        if(produto_atual.quantidade >1){
+            produto_atual.quantidade--
+            localStorage.setItem('produtos_selecionados', JSON.stringify(produtos_selecionados))
+            atualizaCesto()
+        }
+        else{
+            eliminaProduto(produto)
+        }
+
+    }
+}
+
+function aumentaQuantidade(produto){
+    const produto_atual = produtos_selecionados.find(p => p.title === produto.title)
+    if(produto_atual){
+        produto_atual.quantidade++
+        localStorage.setItem('produtos_selecionados', JSON.stringify(produtos_selecionados))
+        atualizaCesto()
+    }
+}
 
 
 //D. Inicialização

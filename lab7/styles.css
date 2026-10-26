@@ -24,6 +24,9 @@ header,footer{
 header{
     display: flex;
     justify-content: space-between;
+    border-bottom:1px solid white;
+    position: sticky;
+    top:0;
 }
 header h2 {
     display: flex;
@@ -91,15 +94,16 @@ main section{
     gap: 30px;
 }
 
-div{
+.colection{
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
     width: 100%;
     justify-content: center;
+
 }
 
-div img{
+.colection img{
     width: 100%;
     aspect-ratio: 16 / 9;
     height: auto;
@@ -130,13 +134,70 @@ button{
     font-size: 20px;
 }
 
-#cesto div article{
+
+#cesto .colection article{
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
+}
+
+#cesto .colection{
+    flex-direction: column;
+}
+
+#cesto .colection article img{
+    object-fit: cover;
+    width: 20%;
+    height: 150px;
+
+    flex-shrink: 0;
+}
+
+#cesto .colection article>div{
+    display: flex;
+    flex-direction:column ;
+    gap: 20px;
+    align-items: flex-start;
+}
+#cesto .colection article div div{
+    display: flex;
+    align-items: center;
+    border: 1px solid rgb(255, 255, 255,30%);
+    border-radius: 6px;
+    gap: 10px;
+    justify-content: center;
+    field-sizing: content;
 
 }
 
-#cesto div{
-    flex-direction: column;
+#cesto .colection article button{
+    background-color: #1A2233;
+    color:rgb(255, 255, 255,30%);
+}
+
+#cesto .colection article button:hover{
+    color:white;
+
+}
+
+#cesto .colection *{
+    width:auto;
+}
+
+#cesto .colection input{
+    background-color: #1A2233;
+    border: none;
+    color: white;
+    width:auto;
+    outline:none;
+    field-sizing: content;
+    min-width: 1ch;
+}
+
+#cesto .colection input[type="number"]::-webkit-inner-spin-button {
+    appearance: none;
+}
+
+#cesto article > button {
+    margin-left: auto;
 }
