@@ -30,8 +30,20 @@
             <h4>Total do valor:<span>0 €</span></h4>
         </section>
     </aside>
-    <div id="overlay" onclick="fechaCesto()"></div>
     <footer>DIW-2026/27 Lusófona</footer>
+
+    <dialog id="remove-dialog">
+        <h2>Tem a certeza que deseja remover este produto?</h2>
+        <div class="colection"></div>
+        <div>
+            <button id="cancelar" onclick=mostraDialog(false)>Cancelar</button>
+            <button id="remover">Remover</button>
+        </div>
+
+
+    </dialog>
+
+    <div id="overlay" onclick="fechaCesto()"></div>
     <script src="produtos.js"></script>
     <script src="main.js"></script>
 </body>

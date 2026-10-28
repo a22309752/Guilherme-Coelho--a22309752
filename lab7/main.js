@@ -4,7 +4,10 @@ const carrinho = document.querySelector("#cesto div")
 const produtos_selecionados = JSON.parse(localStorage.getItem('produtos_selecionados')) || []
 const valor_total = document.querySelector('#cesto h4 span')
 const cesto = document.querySelector('aside')
-
+const dialog = document.getElementById('remove-dialog')
+const confirmarRemocao = document.querySelector('#remover')
+const colecao_dialog = document.querySelector('#remove-dialog .colection')
+let produto_para_eliminar = null
 
 //B. Funções utilitárias
 function criarProduto(produto){
@@ -48,19 +51,9 @@ function criarProduto(produto){
         })
 
         return article
-}
+    }
 
-
-
-//C. Event Handlers
- function renderizarProdutos(produtos){
-    produtos.forEach(produto => {
-        const artigo = criarProduto(produto)
-        colecao.append(artigo)
-    });
- }
-
- function criarProdutoCesto(produto){
+function criarProdutoCesto(produto){
     const article = document.createElement('article')
     const title = document.createElement('h3')
     title.textContent = produto.title
@@ -100,8 +93,11 @@ function criarProduto(produto){
     article.append(eliminar)
 
     eliminar.addEventListener('click', ()=>{
-        eliminaProduto(produto)
+        produto_para_eliminar = produto
+        criarProdutoDialog(produto)
+        mostraDialog(true)
     })
+
 
     console.log('Vou associar o evento ao botão diminuir')
 
@@ -130,6 +126,35 @@ function criarProduto(produto){
 
     return article
  }
+
+ function criarProdutoDialog(produto){
+    colecao_dialog.innerHTML = ''
+    const article = document.createElement('article')
+    const title = document.createElement('h3')
+    title.textContent = produto.title
+
+    const price = document.createElement('p')
+    price.textContent = `${produto.price*produto.quantidade}€`
+
+    const quantidade = document.createElement('p')
+    quantidade.textContent = `Quantidade: ${produto.quantidade}`
+
+    const imagem = document.createElement('img')
+    imagem.src = produto.image
+
+    article.append(imagem,title,price,quantidade)
+    colecao_dialog.append(article)
+
+ }
+
+//C. Event Handlers
+ function renderizarProdutos(produtos){
+    produtos.forEach(produto => {
+        const artigo = criarProduto(produto)
+        colecao.append(artigo)
+    });
+ }
+
 
  function atualizaCesto(){
     const artigos_cesto = JSON.parse(localStorage.getItem('produtos_selecionados')) || []
@@ -178,7 +203,8 @@ function aumentaQuantidade(produto){
     }
 }
 
-//D. Event Listeners
+const mostraDialog = (show) => show ? dialog.showModal() : dialog.close()
+
 function abreCesto() {
     cesto.classList.add('show')
 }
@@ -187,8 +213,17 @@ function fechaCesto() {
     cesto.classList.remove('show')
 }
 
+confirmarRemocao.addEventListener('click', ()=>{
+    if(produto_para_eliminar){
+        eliminaProduto(produto_para_eliminar)
+    }
+
+    mostraDialog(false)
+})
+
 //E. Inicialização
 renderizarProdutos(produtos)
 atualizaCesto()
+
 
 
