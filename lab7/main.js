@@ -1,4 +1,6 @@
+
 //A. Declaração de Variáveis
+
 const colecao = document.querySelector("#produtos div")
 const carrinho = document.querySelector("#cesto div")
 const produtos_selecionados = JSON.parse(localStorage.getItem('produtos_selecionados')) || []
@@ -7,59 +9,66 @@ const cesto = document.querySelector('aside')
 const dialog = document.getElementById('remove-dialog')
 const confirmarRemocao = document.querySelector('#remover')
 const colecao_dialog = document.querySelector('#remove-dialog .colection')
+
 let produto_para_eliminar = null
 
-//B. Funções utilitárias
-function criarProduto(produto){
-        const article = document.createElement('article')
-        const h3 = document.createElement('h3')
-        h3.textContent = produto.title
 
-        const img = document.createElement('img')
-        img.src = produto.image
+//B. Funções Utilitárias
 
-        const preco = document.createElement('p')
-        preco.textContent = `${produto.price}€`
+function criarProduto(produto) {
+    const article = document.createElement('article')
 
-        const p = document.createElement('p')
-        p.textContent = produto.description
+    const h3 = document.createElement('h3')
+    h3.textContent = produto.title
 
-        article.append(img,h3,p,preco)
+    const img = document.createElement('img')
+    img.src = produto.image
 
-        const botao = document.createElement('button')
-        botao.textContent = " 🛒 Adicionar ao Carrinho"
+    const preco = document.createElement('p')
+    preco.textContent = `${produto.price}€`
 
-        article.append(botao)
+    const p = document.createElement('p')
+    p.textContent = produto.description
 
-        botao.addEventListener('click', () =>{
+    article.append(img, h3, p, preco)
 
-            const produto_existente = produtos_selecionados.find(p => p.title === produto.title)
-            if(produto_existente){
-                produto_existente.quantidade++
-            }
-            else{
-                 produtos_selecionados.push({
+    const botao = document.createElement('button')
+    botao.textContent = " 🛒 Adicionar ao Carrinho"
+
+    article.append(botao)
+
+    botao.addEventListener('click', () => {
+        const produto_existente = produtos_selecionados.find(p => p.title === produto.title)
+
+        if (produto_existente) {
+            produto_existente.quantidade++
+        }
+        else {
+            produtos_selecionados.push({
                 title: produto.title,
                 price: produto.price,
                 image: produto.image,
                 quantidade: 1
-                })
-            }
-            localStorage.setItem('produtos_selecionados', JSON.stringify(produtos_selecionados))
-            atualizaCesto()
-            console.log(produtos_selecionados)
-        })
+            })
+        }
 
-        return article
-    }
+        localStorage.setItem('produtos_selecionados', JSON.stringify(produtos_selecionados))
+        atualizaCesto()
+        console.log(produtos_selecionados)
+    })
 
-function criarProdutoCesto(produto){
+    return article
+}
+
+
+function criarProdutoCesto(produto) {
     const article = document.createElement('article')
+
     const title = document.createElement('h3')
     title.textContent = produto.title
 
     const price = document.createElement('p')
-    price.textContent = `${produto.price*produto.quantidade}€`
+    price.textContent = `${produto.price * produto.quantidade}€`
 
     const quantidade = document.createElement('input')
     quantidade.type = 'number'
@@ -76,32 +85,30 @@ function criarProdutoCesto(produto){
     aumentar.classList.add("aumentar")
 
     const quantidade_div = document.createElement('div')
-    quantidade_div.append(diminuir,quantidade,aumentar)
+    quantidade_div.append(diminuir, quantidade, aumentar)
 
     const imagem = document.createElement('img')
     imagem.src = produto.image
 
     const div = document.createElement('div')
-    div.append(title,quantidade_div,price)
+    div.append(title, quantidade_div, price)
 
-
-    article.append(imagem,div)
+    article.append(imagem, div)
 
     const eliminar = document.createElement('button')
     eliminar.textContent = "x"
 
     article.append(eliminar)
 
-    eliminar.addEventListener('click', ()=>{
+    eliminar.addEventListener('click', () => {
         produto_para_eliminar = produto
         criarProdutoDialog(produto)
         mostraDialog(true)
     })
 
-
     console.log('Vou associar o evento ao botão diminuir')
 
-    diminuir.addEventListener('click', ()=>{
+    diminuir.addEventListener('click', () => {
         diminuiQuantidade(produto)
     })
 
@@ -111,30 +118,33 @@ function criarProdutoCesto(produto){
 
     quantidade.addEventListener('change', () => {
         const produto_atual = produtos_selecionados.find(p => p.title === produto.title)
-        if(produto_atual){
-            if(Number(quantidade.value)>0){
+
+        if (produto_atual) {
+            if (Number(quantidade.value) > 0) {
                 produto_atual.quantidade = Number(quantidade.value)
                 localStorage.setItem('produtos_selecionados', JSON.stringify(produtos_selecionados))
                 atualizaCesto()
             }
-            else if(Number(quantidade.value) === 0){
+            else if (Number(quantidade.value) === 0) {
                 eliminaProduto(produto)
             }
         }
-
     })
 
     return article
- }
+}
 
- function criarProdutoDialog(produto){
+
+function criarProdutoDialog(produto) {
     colecao_dialog.innerHTML = ''
+
     const article = document.createElement('article')
+
     const title = document.createElement('h3')
     title.textContent = produto.title
 
     const price = document.createElement('p')
-    price.textContent = `${produto.price*produto.quantidade}€`
+    price.textContent = `${produto.price * produto.quantidade}€`
 
     const quantidade = document.createElement('p')
     quantidade.textContent = `Quantidade: ${produto.quantidade}`
@@ -142,88 +152,103 @@ function criarProdutoCesto(produto){
     const imagem = document.createElement('img')
     imagem.src = produto.image
 
-    article.append(imagem,title,price,quantidade)
+    article.append(imagem, title, price, quantidade)
     colecao_dialog.append(article)
+}
 
- }
 
-//C. Event Handlers
- function renderizarProdutos(produtos){
+function renderizarProdutos(produtos) {
     produtos.forEach(produto => {
         const artigo = criarProduto(produto)
         colecao.append(artigo)
     });
- }
+}
 
 
- function atualizaCesto(){
+function atualizaCesto() {
     const artigos_cesto = JSON.parse(localStorage.getItem('produtos_selecionados')) || []
+
     carrinho.innerHTML = ''
     let total = 0
-    artigos_cesto.forEach(produto =>{
+
+    artigos_cesto.forEach(produto => {
         const article = criarProdutoCesto(produto)
         carrinho.append(article)
-        total += produto.price
+        total += produto.price * produto.quantidade
     })
-     valor_total.textContent = `${total} €`
- }
 
-function eliminaProduto(produto){
+    valor_total.textContent = `${total} €`
+}
+
+
+//C. Event Handlers
+
+function eliminaProduto(produto) {
     const indice = produtos_selecionados.findIndex(p => p.title === produto.title)
+
     console.log(indice)
-    if(indice !== -1){
-        produtos_selecionados.splice(indice,1)
+
+    if (indice !== -1) {
+        produtos_selecionados.splice(indice, 1)
         localStorage.setItem('produtos_selecionados', JSON.stringify(produtos_selecionados))
         atualizaCesto()
         console.log(produtos_selecionados)
     }
 }
 
-function diminuiQuantidade(produto){
+
+function diminuiQuantidade(produto) {
     const produto_atual = produtos_selecionados.find(p => p.title === produto.title)
-    if(produto_atual){
-        if(produto_atual.quantidade >1){
+
+    if (produto_atual) {
+        if (produto_atual.quantidade > 1) {
             produto_atual.quantidade--
             localStorage.setItem('produtos_selecionados', JSON.stringify(produtos_selecionados))
             atualizaCesto()
         }
-        else{
+        else {
             eliminaProduto(produto)
         }
-
     }
 }
 
-function aumentaQuantidade(produto){
+
+function aumentaQuantidade(produto) {
     const produto_atual = produtos_selecionados.find(p => p.title === produto.title)
-    if(produto_atual){
+
+    if (produto_atual) {
         produto_atual.quantidade++
         localStorage.setItem('produtos_selecionados', JSON.stringify(produtos_selecionados))
         atualizaCesto()
     }
 }
 
+
 const mostraDialog = (show) => show ? dialog.showModal() : dialog.close()
+
 
 function abreCesto() {
     cesto.classList.add('show')
 }
 
+
 function fechaCesto() {
     cesto.classList.remove('show')
 }
 
-confirmarRemocao.addEventListener('click', ()=>{
-    if(produto_para_eliminar){
+
+//D. Event Listeners
+
+confirmarRemocao.addEventListener('click', () => {
+    if (produto_para_eliminar) {
         eliminaProduto(produto_para_eliminar)
     }
 
     mostraDialog(false)
 })
 
+
 //E. Inicialização
+
 renderizarProdutos(produtos)
 atualizaCesto()
-
-
-

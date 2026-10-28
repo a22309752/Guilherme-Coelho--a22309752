@@ -1,10 +1,13 @@
-*{
-    padding:0px;
+
+/*A. Estilos Gerais*/
+
+* {
+    padding: 0px;
     margin: 0px;
     box-sizing: border-box;
 }
 
-body{
+body {
     background-color: #0B0F19;
     padding: 20px;
     font-family: 'Inter', sans-serif;
@@ -14,18 +17,51 @@ h1, h2 {
     font-family: 'Orbitron', sans-serif;
 }
 
-header,footer{
+header, footer {
     background-color: #0B0F19;
     padding: 10px;
     border-radius: 6px;
-    color:white;
+    color: white;
 }
 
-header{
+p:last-of-type {
+    color: #C4B5FD;
+    font-size: 25px;
+}
+
+
+/*B. Botões*/
+
+button {
+    text-decoration: none;
+    color: white;
+    background-color: #7C3AED;
+    padding: 10px;
+    border-radius: 6px;
+    border: none;
+}
+
+button {
+    font-size: 20px;
+}
+
+button:hover {
+    background-color: #6D28D9;
+}
+
+button:active {
+    background-color: #5B21B6;
+}
+
+
+/*C. Header e Navegação*/
+
+header {
     display: flex;
     justify-content: space-between;
-    border-bottom:1px solid white;
+    border-bottom: 1px solid white;
 }
+
 header h2 {
     display: flex;
     align-items: center;
@@ -43,41 +79,27 @@ header h2 img {
     object-fit: contain;
 }
 
-header nav{
+header nav {
     display: flex;
-    gap:10px;
-}
-button{
-    text-decoration: none;
-    color: white;
-    background-color: #7C3AED;
-    padding: 10px;
-    border-radius: 6px;
-    border:none;
+    gap: 10px;
 }
 
-header nav a{
+header nav a {
     display: flex;
     text-decoration: none;
-    color:white;
+    color: white;
     padding: 1em 2em;
     transition: color 150ms ease;
 }
-header nav a:hover{
+
+header nav a:hover {
     color: #444651;
 }
 
-button:hover{
-    background-color: #6D28D9;
-}
-button:active{
-    background-color: #5B21B6;
-}
-footer{
-    display:flex;
-    justify-content: center;
-}
-main{
+
+/*D. Conteúdo Principal*/
+
+main {
     display: flex;
     flex-direction: column;
     gap: 30px;
@@ -87,7 +109,8 @@ main{
     max-width: 1400px;
     margin: 20px auto;
 }
-main section, aside section{
+
+main section, aside section {
     background-color: #0B0F19;
     padding: 20px;
     border-radius: 6px;
@@ -97,16 +120,18 @@ main section, aside section{
     gap: 30px;
 }
 
-.colection{
+
+/*E. Coleções e Cartões*/
+
+.colection {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
     width: 100%;
     justify-content: center;
-
 }
 
-.colection img{
+.colection img {
     width: 100%;
     aspect-ratio: 16 / 9;
     height: auto;
@@ -114,12 +139,12 @@ main section, aside section{
     border-radius: 6px;
 }
 
-article{
+article {
     display: flex;
     flex-direction: column;
-    gap:15px;
+    gap: 15px;
     background-color: #1A2233;
-    color:white;
+    color: white;
     padding: 15px;
     border-radius: 6px;
     min-width: 0;
@@ -127,34 +152,98 @@ article{
     transition: transform 0.5s ease;
 }
 
-#produtos article{
+
+/*F. Catálogo de Produtos*/
+
+#produtos article {
     justify-content: space-around;
     width: calc((100% - 40px) / 3);
     flex-shrink: 0;
 }
 
-p:last-of-type{
-    color:#C4B5FD;
-    font-size: 25px;
+
+/*G. Animações*/
+
+@keyframes pulse {
+    0% {
+        border-color: #5B21B6;
+        box-shadow: 0px 0px 5px #993aed;
+    }
+
+    50% {
+        border-color: #993aed;
+        box-shadow: 0px 0px 20px #993aed;
+    }
+
+    100% {
+        border-color: #5B21B6;
+        box-shadow: 0px 0px 5px #993aed;
+    }
 }
 
-button{
-    font-size: 20px;
+#produtos div article:hover {
+    animation: pulse 2s ease-in-out infinite alternate;
+    transform: translateY(-8px);
 }
 
 
-#cesto .colection article{
+/*H. Carrinho Lateral*/
+
+aside {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    height: 100vh;
+    z-index: 10;
+    transition: right 300ms ease-out;
+    width: 450px;
+    max-width: 100%;
+}
+
+aside section {
+    height: 100vh;
+}
+
+aside h1 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+aside.show {
+    right: 0;
+}
+
+aside.show ~ #overlay {
+    display: block;
+}
+
+
+/*I. Overlay*/
+
+#overlay {
+    background-color: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    inset: 0;
+    z-index: 9;
+    display: none;
+}
+
+
+/*J. Produtos do Carrinho*/
+
+#cesto .colection {
+    flex-direction: column;
+}
+
+#cesto .colection article {
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
     width: 100%;
 }
 
-#cesto .colection{
-    flex-direction: column;
-}
-
-#cesto .colection article img{
+#cesto .colection article img {
     object-fit: cover;
     width: 25%;
     height: auto;
@@ -162,104 +251,13 @@ button{
     flex-shrink: 0;
 }
 
-#cesto .colection article>div{
+#cesto .colection article > div {
     display: flex;
-    flex-direction:column ;
+    flex-direction: column;
     gap: 5px;
     align-items: flex-start;
     flex: 1;
     min-width: 0;
-}
-#cesto .colection article div div{
-    display: flex;
-    align-items: center;
-    border: 1px solid rgb(255, 255, 255,30%);
-    border-radius: 6px;
-    gap: 10px;
-    justify-content: center;
-    field-sizing: content;
-    padding: 2px;
-
-}
-
-#cesto .colection article button{
-    background-color: #1A2233;
-    color:rgb(255, 255, 255,30%);
-}
-
-#cesto .colection article button:hover{
-    color:white;
-
-}
-
-
-#cesto .colection input{
-    background-color: #1A2233;
-    border: none;
-    color: white;
-    width:auto;
-    outline:none;
-    field-sizing: content;
-    min-width: 1ch;
-}
-
-#cesto .colection input[type="number"]::-webkit-inner-spin-button {
-    appearance: none;
-}
-
-#cesto article > button {
-    margin-left: auto;
-}
-
-@keyframes pulse {
-    0%{
-        border-color: #5B21B6;
-        box-shadow: 0px 0px 5px #993aed;
-    }
-
-    50%{
-        border-color: #993aed;
-        box-shadow: 0px 0px 20px #993aed
-    }
-
-    100%{
-        border-color: #5B21B6;
-        box-shadow: 0px 0px 5px #993aed;
-    }
-}
-
-#produtos div article:hover{
-    animation: pulse 2s ease-in-out infinite alternate;
-    transform: translateY(-8px);
-}
-
-aside{
-    position: fixed;
-    top: 0;
-    right: -100%;
-    height:100vh;
-    z-index: 10;
-    transition: right 300ms ease-out;
-    width: 450px;
-    max-width: 100%;
-}
-aside section{
-    height: 100vh;
-}
-
-aside.show{
-    right: 0;
-}
-aside.show ~ #overlay{
-    display:block;
-}
-
-#overlay{
-    background-color: rgba(0, 0, 0, 0.5);
-    position: fixed;
-    inset: 0;
-    z-index: 9;
-    display: none;
 }
 
 #cesto article h3 {
@@ -270,17 +268,139 @@ aside.show ~ #overlay{
     font-size: 20px;
 }
 
-#fecha-cesto{
-    background-color: #0B0F19;
-    color:white;
+
+/*K. Controlo de Quantidades*/
+
+#cesto .colection article div div {
+    display: flex;
+    align-items: center;
+    border: 1px solid rgb(255, 255, 255, 30%);
+    border-radius: 6px;
+    gap: 10px;
+    justify-content: center;
+    field-sizing: content;
+    padding: 2px;
 }
 
-#fecha-cesto:hover{
+#cesto .colection article button {
+    background-color: #1A2233;
+    color: rgb(255, 255, 255, 30%);
+}
+
+#cesto .colection article button:hover {
+    color: white;
+}
+
+#cesto .colection input {
+    background-color: #1A2233;
+    border: none;
+    color: white;
+    width: auto;
+    outline: none;
+    field-sizing: content;
+    min-width: 1ch;
+}
+
+#cesto .colection input[type="number"]::-webkit-inner-spin-button {
+    appearance: none;
+}
+
+
+/*L. Botões do Carrinho*/
+
+#cesto article > button {
+    margin-left: auto;
+}
+
+#fecha-cesto {
+    background-color: #0B0F19;
+    color: white;
+}
+
+#fecha-cesto:hover {
     color: #444651;
 }
 
-aside h1{
+
+/*M. Footer*/
+
+footer {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    justify-content: center;
 }
+
+
+/*Dialog*/
+
+/*N. Modal de Remoção*/
+
+#remove-dialog {
+    position: fixed;
+    inset: 0;
+    margin: auto;
+    width: 450px;
+    max-width: calc(100% - 32px);
+    max-height: 90vh;
+    padding: 20px;
+    background-color: #0B0F19;
+    color: white;
+    border: 1px solid #7C3AED;
+    border-radius: 10px;
+    overflow-y: auto;
+}
+
+#remove-dialog::backdrop {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+#remove-dialog h2 {
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+#remove-dialog .colection {
+    width: 100%;
+}
+
+#remove-dialog article {
+    display: grid;
+    grid-template-columns: 100px minmax(0, 1fr);
+    gap: 8px 15px;
+    align-items: center;
+    width: 100%;
+}
+
+#remove-dialog article img {
+    grid-column: 1;
+    grid-row: 1 / 4;
+    width: 100px;
+    height: 100px;
+    aspect-ratio: 1 / 1;
+    object-fit: contain;
+}
+
+#remove-dialog article h3 {
+    font-size: 16px;
+}
+
+#remove-dialog article p:first-of-type {
+    color: #C4B5FD;
+    font-size: 18px;
+}
+
+#remove-dialog article p:last-of-type {
+    color: #94A3B8;
+    font-size: 14px;
+}
+
+#remove-dialog > div:last-of-type {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+#remove-dialog button {
+    font-size: 16px;
+}
+
