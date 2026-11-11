@@ -153,7 +153,8 @@ function criarProdutoDialog(produto) {
     imagem.src = produto.image
 
     article.append(imagem, title, price, quantidade)
-    colecao_dialog.append(article)
+
+    return article
 }
 
 
