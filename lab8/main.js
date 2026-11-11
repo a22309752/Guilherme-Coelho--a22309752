@@ -6,7 +6,12 @@ const cestoDiv = document.querySelector('#cesto div')
 const carrinho = JSON.parse(localStorage.getItem('carrinho')) || []
 const searchbar = document.querySelector('#searchbar')
 const filtro = document.querySelector('#filtro')
+const ordenar = document.querySelector('#ordenar')
+const form = document.querySelector('#checkout form')
+
+let dados = []
 renderizaDadosCesto(carrinho)
+
 
 fetch(url)
     .then(response =>{
@@ -18,16 +23,8 @@ fetch(url)
         }
     })
     .then(data =>{
-        const dados = data
+        dados = data
         renderizaDados(dados)
-        searchbar.addEventListener('input', ()=>{
-            const textoPesquisa = searchbar.value.toLowerCase()
-            const novaArray = dados.filter(e => e.title.toLowerCase().startsWith(textoPesquisa))
-            renderizaDados(novaArray)
-            console.log(textoPesquisa)
-        })
-
-
         console.log(dados)
     })
     .catch(error => console.error('Erro:', error));
@@ -49,6 +46,7 @@ fetch(url2)
             opcao.textContent = categoria.name
             filtro.append(opcao)
         })
+
         console.log(categorias)
     })
     .catch(error => console.log(error))
@@ -67,7 +65,7 @@ function criaProduto(dado){
     descricao.textContent = dado.description
 
     const preco = document.createElement('p')
-    preco.textContent = dado.price
+    preco.textContent = `${dado.price} €`
 
     const div = document.createElement('div')
     div.append(nome,descricao,preco)
@@ -78,15 +76,7 @@ function criaProduto(dado){
     article.append(imagem,div,button)
 
     button.addEventListener('click', ()=>{
-        const produtoExiste = carrinho.find(p => p.title === dado.title)
-
-        if(produtoExiste){
-            produtoExiste.quantidade++
-        }
-        else{
-            const novoProduto = { ...dado, quantidade: 1 }
-            carrinho.push(novoProduto)
-        }
+        carrinho.push(dado)
 
         localStorage.setItem('carrinho', JSON.stringify(carrinho))
         renderizaDadosCesto(carrinho)
@@ -104,53 +94,20 @@ function criaProdutoCesto(dado){
     const imagem = document.createElement('img')
     imagem.src = `https://deisishop.pw.deisi.ulusofona.pt${dado.image}`
 
-    const quantidade = document.createElement('P')
-    quantidade.textContent = dado.quantidade
-
-    const buttonIncrementar = document.createElement('button')
-    buttonIncrementar.textContent = "+"
-
-    const buttonDecrementar = document.createElement('button')
-    buttonDecrementar.textContent = "-"
-
     let preco = document.createElement('p')
-    preco.textContent = `${dado.price*dado.quantidade} €`
+    preco.textContent = `${dado.price} €`
 
     const button = document.createElement('button')
     button.textContent = "Eliminar"
 
-    const divQuantidade = document.createElement('div')
-    divQuantidade.append(buttonDecrementar,quantidade,buttonIncrementar)
-
     const div = document.createElement('div')
-    div.append(nome,divQuantidade,preco)
+    div.append(nome,preco)
 
     article.append(imagem,div,button)
 
     button.addEventListener('click', () =>{
         eliminaProduto(dado)
 
-    })
-
-    buttonIncrementar.addEventListener('click', ()=>{
-        const produtoIncrementado = carrinho.find(p => p.title === dado.title)
-        if(produtoIncrementado){
-            produtoIncrementado.quantidade++
-            localStorage.setItem('carrinho', JSON.stringify(carrinho))
-            renderizaDadosCesto(carrinho)
-        }
-    })
-
-    buttonDecrementar.addEventListener('click', ()=>{
-        const produtoDecrementado = carrinho.find(p=>p.title === dado.title)
-        if(produtoDecrementado.quantidade>1){
-            produtoDecrementado.quantidade--
-            localStorage.setItem('carrinho', JSON.stringify(carrinho))
-            renderizaDadosCesto(carrinho)
-        }
-        else{
-            eliminaProduto(dado)
-        }
     })
 
     return article
@@ -180,6 +137,102 @@ function renderizaDadosCesto(dados){
         const article = criaProdutoCesto(dado)
         cestoDiv.append(article)
     })
+    const total = dados.reduce((soma, produto) => soma + Number(produto.price), 0)
+
+    document.querySelector('#custoTotal').textContent =
+        `Custo total: ${total.toFixed(2)} €`
+    }
+
+function atualizaDados(){
+    let novaArray = [...dados]
+
+
+    // Filtrar por categoria
+    const categoria = filtro.value
+
+    if (categoria !== "") {
+        novaArray = novaArray.filter(e => e.category === categoria)
+    }
+
+    // Filtrar pela pesquisa
+    const textoPesquisa = searchbar.value.toLowerCase()
+
+    novaArray = novaArray.filter(e =>
+        e.title.toLowerCase().startsWith(textoPesquisa)
+    )
+
+    // Ordenar por preço
+    const opcao = ordenar.value
+
+    if (opcao === "asc") {
+        novaArray.sort((a, b) => a.price - b.price)
+    }
+    else if (opcao === "desc") {
+        novaArray.sort((a, b) => b.price - a.price)
+    }
+
+    // Apresentar os produtos
+    renderizaDados(novaArray)
 }
 
 
+searchbar.addEventListener('input', () => {
+    atualizaDados()
+})
+
+filtro.addEventListener('change', () => {
+    atualizaDados()
+})
+
+ordenar.addEventListener('change', () => {
+    atualizaDados()
+})
+
+form.addEventListener('submit', (e)=>{
+    e.preventDefault()
+    console.log("Compra inicializada")
+    const produtosID = carrinho.map(produto => produto.id)
+    const nome = document.querySelector('#nome')
+    const estudante = document.querySelector('#estudante')
+    const cupao = document.querySelector('#cupao')
+    const url3 = "https://deisishop.pw.deisi.ulusofona.pt/buy"
+
+    console.log(nome.value)
+    console.log(estudante.checked)
+    console.log(cupao.value)
+    const compra = {
+        "products": produtosID,
+        "student": estudante.checked,
+        "coupon": cupao.value,
+        "name": nome.value
+    }
+
+    fetch(url3,{
+        method: "POST",
+        headers: {
+            "content-Type": "application/json"
+        },
+        body: JSON.stringify(compra)
+    })
+    .then(response => {
+        if(!response.ok){
+            throw new Error("Erro ao receber resposta")
+        }
+        else{
+            return response.json()
+        }
+    })
+    .then(data =>{
+        const valorFinal = document.querySelector('#valorFinal')
+        valorFinal.textContent = `Valor Final: ${data.totalCost} €`
+
+        const referenciaPagamento = document.querySelector('#referenciaPagamento')
+        referenciaPagamento.textContent = `Referência: ${data.reference}`
+
+        carrinho.length = 0
+        localStorage.removeItem('carrinho')
+        renderizaDadosCesto(carrinho)
+    })
+    .catch(error => console.log(error))
+
+})

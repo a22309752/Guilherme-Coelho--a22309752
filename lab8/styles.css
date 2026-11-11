@@ -1,0 +1,486 @@
+/* A. Estilos gerais — Q-press */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: #080808;
+    padding: 20px;
+    color: #F1F0EF;
+    font-family: 'Inter', Arial, sans-serif;
+}
+
+h1, h2, h3, h4, h5 {
+    font-family: 'Orbitron', Arial, sans-serif;
+}
+
+header, footer {
+    background-color: #080808;
+    padding: 10px;
+    border-radius: 6px;
+    color: #F1F0EF;
+}
+
+/* B. Botões — mesma forma e proporções do site antigo */
+button {
+    text-decoration: none;
+    color: #F1F0EF;
+    background-color: #D41514;
+    padding: 10px;
+    border-radius: 6px;
+    border: none;
+    font-size: 20px;
+    font-family: inherit;
+    cursor: pointer;
+    transition: background-color 150ms ease;
+}
+
+button:hover {
+    background-color: #F02727;
+}
+
+button:active {
+    background-color: #A60D0D;
+}
+
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+a:focus-visible {
+    outline: 2px solid #CDCBCA;
+    outline-offset: 2px;
+}
+
+/* C. Cabeçalho — o HTML novo utiliza h3 e div, não h2 e nav */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    border-bottom: 1px solid #48484C;
+    padding-bottom: 20px;
+}
+
+header h3 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #F1F0EF;
+}
+
+header > div {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+header > div a {
+    display: flex;
+    align-items: center;
+    padding: 1em 1.5em;
+    color: #F1F0EF;
+    text-decoration: none;
+    transition: color 150ms ease;
+}
+
+header > div a:hover {
+    color: #CDCBCA;
+}
+
+/* D. Conteúdo principal */
+main {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    margin: 20px auto;
+    width: 100%;
+    max-width: 1400px;
+}
+
+main section {
+    background-color: #080808;
+    padding: 20px;
+    border-radius: 6px;
+    color: #F1F0EF;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+#colecao > h1 {
+    font-size: clamp(28px, 3vw, 40px);
+    line-height: 1.25;
+}
+
+/* E. Pesquisa, filtro e ordenação */
+#colecao > div:first-of-type {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+    padding: 15px;
+    background-color: #151517;
+    border: 1px solid #38383C;
+    border-radius: 6px;
+}
+
+#colecao > div:first-of-type select,
+#colecao > div:first-of-type input {
+    padding: 12px 14px;
+    border: 1px solid #55555A;
+    border-radius: 6px;
+    background-color: #2A2A2E;
+    color: #F1F0EF;
+    font: inherit;
+    min-height: 44px;
+}
+
+#colecao > div:first-of-type select {
+    flex: 1 1 190px;
+    min-width: 0;
+    cursor: pointer;
+}
+
+#colecao > div:first-of-type input {
+    flex: 2 1 260px;
+    min-width: 0;
+}
+
+#colecao > div:first-of-type input::placeholder {
+    color: #CDCBCA;
+    opacity: 0.8;
+}
+
+/* F. Coleção e cartões — equivalente à antiga .colection */
+#colecao #produtos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    width: 100%;
+    justify-content: center;
+    align-items: stretch;
+}
+
+#colecao #produtos article {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    gap: 15px;
+    background-color: #1D1D20;
+    color: #F1F0EF;
+    padding: 15px;
+    border-radius: 6px;
+    width: calc((100% - 40px) / 3);
+    min-width: 0;
+    flex-shrink: 0;
+    border: 2px solid transparent;
+    transition: transform 0.5s ease;
+}
+
+#colecao #produtos article > img {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    height: auto;
+    object-fit: cover;
+    border-radius: 6px;
+    background-color: #2A2A2E;
+}
+
+#colecao #produtos article > div {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    flex: 1;
+    min-width: 0;
+}
+
+#colecao #produtos article h5 {
+    font-size: 23px;
+    font-weight: 700;
+    line-height: 1.3;
+    overflow-wrap: anywhere;
+}
+
+#colecao #produtos article > div p:first-of-type {
+    color: #F1F0EF;
+    font-size: 18px;
+    line-height: 1.4;
+}
+
+#colecao #produtos article > div p:last-of-type {
+    color: #CDCBCA;
+    font-size: 29px;
+    line-height: 1.2;
+    margin-top: auto;
+}
+
+#colecao #produtos article > button {
+    width: 100%;
+    margin-top: auto;
+}
+
+/* G. Animação pulse original, com as novas cores */
+@keyframes pulse {
+    0% {
+        border-color: #D41514;
+        box-shadow: 0 0 5px #D41514;
+    }
+    50% {
+        border-color: #F02727;
+        box-shadow: 0 0 20px #F02727;
+    }
+    100% {
+        border-color: #D41514;
+        box-shadow: 0 0 5px #D41514;
+    }
+}
+
+#colecao #produtos article:hover {
+    animation: pulse 2s ease-in-out infinite alternate;
+    transform: translateY(-8px);
+}
+
+/* H. Carrinho e checkout — visíveis, pois o HTML novo não tem um botão funcional para abrir um painel lateral */
+aside {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(320px, 420px);
+    align-items: start;
+    gap: 20px;
+    width: 100%;
+    max-width: 1400px;
+    margin: 20px auto;
+}
+
+aside section {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    min-width: 0;
+    background-color: #151517;
+    border: 1px solid #38383C;
+    color: #F1F0EF;
+    padding: 20px;
+    border-radius: 6px;
+}
+
+aside h1 {
+    font-size: 30px;
+}
+
+/* I. Produtos do carrinho — no HTML novo #cesto > div substitui .colection */
+#cesto > div {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+}
+
+#cesto > div article {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 15px;
+    width: 100%;
+    padding: 12px;
+    min-width: 0;
+    background-color: #2A2A2E;
+    color: #F1F0EF;
+    border: 2px solid transparent;
+    border-radius: 6px;
+}
+
+#cesto > div article > img {
+    width: 110px;
+    height: 110px;
+    max-width: 25%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    flex-shrink: 0;
+    border-radius: 6px;
+}
+
+#cesto > div article > div {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 8px;
+    flex: 1;
+    min-width: 0;
+}
+
+#cesto article h5 {
+    font-size: 16px;
+    line-height: 1.35;
+    overflow-wrap: anywhere;
+}
+
+#cesto article p {
+    color: #CDCBCA;
+    font-size: 20px;
+}
+
+#cesto article > button {
+    margin-left: auto;
+    font-size: 15px;
+    padding: 9px 12px;
+    flex-shrink: 0;
+}
+
+/* J. Checkout — campos e resultado do POST /buy */
+#checkout {
+    gap: 20px;
+}
+
+#checkout h2 {
+    font-size: 23px;
+    line-height: 1.4;
+}
+
+#checkout form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+#checkout form > input,
+#checkout #cupao {
+    background-color: #2A2A2E;
+    color: #F1F0EF;
+    border: 1px solid #55555A;
+    border-radius: 6px;
+    padding: 12px;
+    font: inherit;
+    min-width: 0;
+}
+
+#checkout form > input {
+    width: 100%;
+}
+
+#checkout form > input::placeholder {
+    color: #CDCBCA;
+}
+
+#checkout form p {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    font-size: 17px;
+    color: #F1F0EF;
+}
+
+#checkout #estudante {
+    accent-color: #CDCBCA;
+    width: 19px;
+    height: 19px;
+    cursor: pointer;
+}
+
+#checkout #cupao {
+    flex: 1 1 160px;
+    max-width: 100%;
+}
+
+#checkout form button {
+    align-self: stretch;
+}
+
+#valorFinal {
+    color: #CDCBCA;
+    font-size: 20px;
+    line-height: 1.4;
+}
+
+#referenciaPagamento {
+    color: #F1F0EF;
+    font-size: 17px;
+    line-height: 1.4;
+    overflow-wrap: anywhere;
+}
+
+#valorFinal:empty,
+#referenciaPagamento:empty {
+    display: none;
+}
+
+/* K. Footer */
+footer {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin-top: 30px;
+    border-top: 1px solid #48484C;
+    padding: 20px 10px;
+}
+
+footer p {
+    font-size: 14px;
+    color: #CDCBCA;
+}
+
+/* L. Adaptação a ecrãs menores */
+@media (max-width: 1050px) {
+    #colecao #produtos article {
+        width: calc((100% - 20px) / 2);
+    }
+
+    aside {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 650px) {
+    body {
+        padding: 12px;
+    }
+
+    header {
+        padding-bottom: 14px;
+    }
+
+    header h3 {
+        font-size: 23px;
+    }
+
+    main section,
+    aside section {
+        padding: 12px;
+        gap: 20px;
+    }
+
+    #colecao #produtos article {
+        width: 100%;
+    }
+
+    #colecao > div:first-of-type select,
+    #colecao > div:first-of-type input {
+        flex: 1 1 100%;
+    }
+
+    #colecao #produtos article h5 {
+        font-size: 21px;
+    }
+
+    #cesto > div article {
+        flex-wrap: wrap;
+    }
+
+    #cesto > div article > img {
+        width: 90px;
+        height: 90px;
+    }
+
+    #cesto article > button {
+        width: 100%;
+        margin-left: 0;
+    }
+}
